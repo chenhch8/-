@@ -1,0 +1,69 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  
+
+\usepackage{xeCJK} % 设置中文显示
+\setCJKmainfont{CESI_FS_GB18030}
+
+\usepackage{caption}
+\captionsetup{font={footnotesize}}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} 
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \begin{algorithm}[htbp]
+%     \caption{Rabin-Karp(T,P,d,p)}
+%     \label{alg:rabin-karp}
+%     \begin{algorithmic}[1] % 显示行号
+%         \STATE $n \leftarrow length[T]; m \leftarrow length[P]$
+%         \STATE $h \leftarrow d \mod p$
+%         \STATE $p \leftarrow 0; t_0 \leftarrow 0$
+%         \STATE $ans \leftarrow list()$
+%         \FOR{$i \leftarrow 1$ to $m$}
+%             \STATE $p \leftarrow (dp + P[i]) \mod q$
+%             \STATE $t_0 \leftarrow (dt_0 + T[i]) \mod q$
+%         \ENDFOR
+%         \FOR{$s \leftarrow 0$ to $n-m$}
+%             \IF{$p = t_s$}
+%                 \IF{$P[0 \dots m-1]=T[s \dots s+m-1]$}
+%                     \STATE ans.append($s$)
+%                 \ENDIF
+%             \ENDIF
+%             \IF{$s<n-m$}
+%                 \STATE $t_{s+1} \leftarrow (d(t_s-T[s+1]h)+T[s+m+1]) \mod q$
+%             \ENDIF
+%         \ENDFOR
+%     \end{algorithmic}
+% \end{algorithm}
+
+\begin{document}
+  %\begin{algorithm}
+  %  \caption{Algorithmn of Perceptron}
+  %  \begin{algorithmic}[1] % 每行显示行号
+  %    \REQUIRE
+  %    \ENSURE
+  %  \end{algorithmic}
+  %\end{algorithm}
+  \begin{algorithm}
+    \caption{Algorithmn of Perceptron}
+    \begin{algorithmic}[1] % 每行显示行号
+      \REQUIRE $T=\{(x_1,y_1),\dots,(x_N,y_N)\},\text{where }x_i \in \mathcal{X} = R^n,y_i \in \mathcal{Y} = \{-1, +1\}; \text{learning rate }\eta$
+      \ENSURE $w, b$
+      \STATE $w \leftarrow 0 \in R^n; b \leftarrow 0$
+      \WHILE {True}
+        \FOR {$(x_i,y_i)$ in $T$}
+          \IF {$y_i(w \dot x_i) \leq 0$}
+            \STATE $w \leftarrow w + \eta y_i x_i$
+            \STATE $b \leftarrow b + \eta y_i$
+          \ENDIF
+        \ENDFOR
+        \IF {no sample in $T$ is misclassified}
+          \STATE break
+        \ENDIF
+      \ENDWHILE
+    \end{algorithmic}
+  \end{algorithm}
+  实例点$(x_i,y_i)$被用于更新的次数越多, 意味着它离超平面越接近, 也就越难以正确分类. 这样的实例对学习结果影响最大
+\end{document}
